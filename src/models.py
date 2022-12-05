@@ -37,16 +37,16 @@ class Vehicle(Base):
     id = Column(Integer , primary_key=True)
     name = Column(String(250))
     vehicle_type = Column(String(250))
-    pilot = (String(250) , ForeignKey('character.name'))
+    pilot = Column(String(250) , ForeignKey('character.name'))
 
 
 class Favorites(Base):
     __tablename__ = 'favorites'
-    user_id = Column(Integer)
+    user_id = Column(Integer , ForeignKey('user.user_id') , primary_key=True)
     date_added = Column(Integer)
     favorite_characters = Column(String(250) , ForeignKey('character.name'))
-    favorite_planets = Column(String(250))
-    favorite_vehicles = Column(String(250))
+    favorite_planets = Column(String(250) , ForeignKey('planets.name'))
+    favorite_vehicles = Column(String(250) , ForeignKey('vehicle.name'))
 
 
 
